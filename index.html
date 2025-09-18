@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flip Coin — HTML + CSS + JS</title>
+  <link href="./index.css" rel="stylesheet">
+</head>
+<body>
+  <main class="stage" role="main">
+    <div class="coin" id="coin" aria-live="polite" tabindex="0" title="Click or press Space to flip">
+      <div class="edge"></div>
+      <div class="face front" aria-hidden="false">H</div>
+      <div class="face back" aria-hidden="true">T</div>
+    </div>
+
+    <div class="controls">
+      <button id="flipBtn">Flip coin</button>
+      <button id="rigHeads">Force Heads</button>
+      <button id="rigTails">Force Tails</button>
+    </div>
+
+    <div class="result" id="result">Click the coin to flip</div>
+    <div class="hint">Tip: click the coin or press <kbd>Space</kbd> while the coin is focused.</div>
+  </main>
+
+  <script src="./index.js"></script>
+</body>
+</html>

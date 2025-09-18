@@ -1,0 +1,115 @@
+    :root{
+      --coin-size: 180px;
+      --edge-color: #b8872b;
+      --face-color: linear-gradient(135deg,#ffd966,#ffb347);
+      --duration: 1.6s;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      margin:0;
+      background: radial-gradient(circle at 20% 20%, #0f172a 0%, #071029 60%);
+      color:#eef2ff;
+      gap:28px;
+      padding:32px;
+    }
+
+    .stage{
+      perspective:1000px;
+      text-align:center;
+    }
+
+    .coin{
+      width:var(--coin-size);
+      height:var(--coin-size);
+      position:relative;
+      margin:0 auto 18px;
+      transform-style:preserve-3d;
+      transition: transform var(--duration) cubic-bezier(.2,.8,.2,1);
+      cursor:pointer;
+      user-select:none;
+    }
+
+    /* coin faces */
+    .face{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      backface-visibility:hidden;
+      box-shadow: 0 10px 30px rgba(2,6,23,.6), inset 0 3px 0 rgba(255,255,255,0.08);
+      font-weight:700;
+      font-size:64px;
+      letter-spacing:2px;
+      color: #432b00;
+    }
+
+    .face.front{
+      background: linear-gradient(135deg,#ffd966,#ffb347);
+      transform: rotateY(0deg) translateZ(6px);
+    }
+
+    .face.back{
+      background: linear-gradient(135deg,#fff1c6,#ffd6a5);
+      transform: rotateY(180deg) translateZ(6px);
+    }
+
+    /* thin rim to give 3D edge */
+    .edge{
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background: repeating-linear-gradient(90deg, #cf9a3e 0 6px, #b8872b 6px 12px);
+      transform: translateZ(0px);
+      z-index:-1;
+    }
+
+    /* outcome badges */
+    .label{
+      font-size:14px;
+      opacity:.9;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.06);
+      display:inline-block;
+    }
+
+    .controls{display:flex;gap:10px;justify-content:center}
+    button{
+      background:#2563eb;
+      border:0;
+      color:white;
+      padding:10px 14px;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow: 0 6px 18px rgba(37,99,235,.18);
+    }
+    button:active{transform:translateY(1px)}
+
+    .result{
+      margin-top:8px;
+      min-height:22px;
+      font-weight:600;
+    }
+
+    /* small help */
+    .hint{font-size:13px;opacity:.8;margin-top:8px}
+
+    /* animation helper class: apply inline style with rotation degrees for randomness */
+    .flipping{animation: none}
+
+    @keyframes little-bounce {
+      0%{transform: translateY(0)}
+      50%{transform: translateY(-8px)}
+      100%{transform: translateY(0)}
+    }
+
+    .coin:hover{animation: little-bounce 900ms ease-in-out}
